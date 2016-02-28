@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.young_jin.pushtest">
+
+    <!-- push -->
+    <permission
+        android:name="com.example.young_jin.pushtest.permission.C2D_MESSAGE"
+        android:protectionLevel="signature" />
+
+    <uses-permission android:name="com.example.young_jin.pushtest.permission.C2D_MESSAGE" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.USE_CREDENTIALS" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <!-- push -->
+
+
+    <!-- network -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <!-- network -->
+
+
+    <!-- storage -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!-- storage -->
+
+
+    <!-- state -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
+    <!-- state -->
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".activities.SecondActivity"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+
+        </activity>
+        <activity android:name=".activities.ThirdActivity"
+            android:parentActivityName=".activities.SecondActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.SecondActivity" />
+
+        </activity>
+
+        <!-- Private PUSH Receiver -->
+        <receiver android:name="com.apms.sdk.push.PushReceiver">
+            <intent-filter>
+                <action android:name="org.mosquitto.android.mqtt.MSGRECVD" />
+
+                <category android:name="com.example.young.jin.pushtest" />
+            </intent-filter>
+        </receiver>
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <!-- apms push popup activity -->
+        <activity
+            android:name="com.apms.sdk.push.PushPopupActivity"
+            android:configChanges="orientation"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/push_popup_theme" />
+        <activity
+            android:name=".manager.AlertDialogManager"
+            android:configChanges="orientation"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/push_popup_theme" />
+
+        <!-- apms push clickNotiReceiver -->
+        <receiver android:name=".PushNotiReceiver">
+            <intent-filter>
+                <action android:name="com.example.young_jin.pushtest.notification" />
+            </intent-filter>
+        </receiver>
+
+        <!-- APMS Private RestartReceiver -->
+        <receiver android:name="com.apms.sdk.push.mqtt.RestartReceiver">
+            <intent-filter>
+                <action android:name="ACTION_MQTT_PING" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <action android:name="android.intent.action.ACTION_PACKAGE_RESTARTED" />
+            </intent-filter>
+        </receiver>
+
+        <!-- APMS Private connectionChangeReceiver -->
+        <receiver
+            android:name="com.apms.sdk.push.mqtt.ConnectionChangeReceiver"
+            android:label="NetworkConnection">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+        </receiver>
+
+        <!-- Private PUSH Service -->
+        <service
+            android:name="com.apms.sdk.push.mqtt.MQTTService"
+            android:enabled="true"
+            android:exported="true"
+            android:label="PushService"
+            android:process="com.example.young.jin.pushtest" />
+
+        <!-- APMS Data Sender Service -->
+        <service
+            android:name="com.apms.sdk.service.DataSenderService"
+            android:enabled="true"
+            android:exported="true"
+            android:label="SenderService"
+            android:process="com.apms.sdk.DataSenderService" />
+
+        <!-- APMS Data Sender receiver -->
+        <receiver android:name="com.apms.sdk.service.SenderSeviceReceiver">
+            <intent-filter>
+                <action android:name="SENDER.START" />
+                <action android:name="SENDER.STOP" />
+            </intent-filter>
+        </receiver>
+
+        <!-- APMS GCM Receiver -->
+        <receiver
+            android:name=".CustomNotiReceiverClass"
+            android:exported="true"
+            android:permission="com.google.android.c2dm.permission.SEND">
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
+
+                <category android:name="com.example.young.jin.pushtest" />
+            </intent-filter>
+        </receiver>
+
+        <meta-data
+            android:name="APMS_NOTI_CONTENT"
+            android:value="안녕?" />
+        <meta-data
+            android:name="APMS_SET_ICON"
+            android:resource="@drawable/cast_ic_notification_0" />
+        <meta-data
+            android:name="APMS_SET_LARGE_ICON"
+            android:resource="@drawable/ic_cast_dark" />
+
+    </application>
+
+</manifest>

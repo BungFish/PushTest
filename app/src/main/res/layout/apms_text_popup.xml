@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	android:gravity="center" >
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:background="#f0f0f0"
+		android:orientation="vertical" >
+
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:layout_gravity="center"
+			android:background="@drawable/apms_black_header_bg"
+			android:gravity="center"
+			android:padding="5dp"
+			android:text="@string/app_name"
+			android:textColor="#FFFFFF" />
+
+		<ScrollView
+			android:layout_width="match_parent"
+			android:layout_height="0dp"
+			android:layout_weight="1.0"
+			android:background="#FFFFFFFF" >
+
+			<TextView
+				android:id="@+id/apms_txt_msg"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:padding="10dp"
+				android:tag="ContentTextView"
+				android:textColor="#FF222A3B" />
+		</ScrollView>
+
+		<LinearLayout
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:layout_gravity="bottom"
+			android:background="#FFFFFF"
+			android:gravity="center"
+			android:orientation="horizontal"
+			android:padding="5dp" >
+
+			<LinearLayout
+				android:id="@+id/apms_btn_close"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginRight="5dp"
+				android:layout_weight="50"
+				android:background="@drawable/btn_login_click"
+				android:gravity="center"
+				android:padding="10dp"
+				android:tag="button1" >
+
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="@string/btn_close"
+					android:textColor="#FFFFFF" />
+			</LinearLayout>
+
+			<LinearLayout
+				android:id="@+id/apms_btn_detail"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginLeft="5dp"
+				android:layout_weight="50"
+				android:background="@drawable/btn_login_click"
+				android:gravity="center"
+				android:padding="10dp"
+				android:tag="button2" >
+
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="@string/btn_more"
+					android:textColor="#FFFFFF" />
+			</LinearLayout>
+		</LinearLayout>
+	</LinearLayout>
+
+</RelativeLayout>

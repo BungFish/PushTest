@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="google_play_services_version">8487000</integer>
+    <integer name="notification_id">19</integer>
+
+    <integer name="push_type_1">6500799</integer>
+    <integer name="push_type_2">6500879</integer>
+    <integer name="push_type_3">6500881</integer>
+
+    <integer-array name="push_type">
+        <item>6500799</item>
+        <item>6500879</item>
+        <item>6500881</item>
+    </integer-array>
+</resources>

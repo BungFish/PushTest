@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">PushTest</string>
+
+    <string name="google_app_id">819012735242</string>
+
+    <!-- Button Label -->
+    <string name="btn_login">로그인</string>
+    <string name="btn_loginout">로그아웃</string>
+    <string name="btn_unlogin">비로그인</string>
+    <string name="btn_next">다음</string>
+    <string name="btn_yes">예</string>
+    <string name="btn_no">아니오</string>
+    <string name="btn_edit">편집</string>
+    <string name="btn_all_select">전체선택</string>
+    <string name="btn_del">삭제</string>
+    <string name="btn_cancel">취소</string>
+    <string name="btn_confirm">확인</string>
+    <string name="btn_apms_save">AMS 설정 저장</string>
+    <string name="btn_etq_save">에티켓 모드 저장</string>
+    <string name="btn_close">닫기</string>
+    <string name="btn_more">자세히보기</string>
+    <string name="btn_add">더보기</string>
+</resources>
