@@ -1,4 +1,4 @@
-package com.example.young_jin.pushtest.manager;
+package com.example.young_jin.pushtest.push;
 
 import android.content.Context;
 import android.os.PowerManager;

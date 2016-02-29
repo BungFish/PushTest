@@ -1,4 +1,4 @@
-package com.example.young_jin.pushtest.push;
+package com.example.young_jin.pushtest.push.notification;
 
 import android.app.ActivityManager;
 import android.app.NotificationManager;
@@ -9,16 +9,17 @@ import android.content.Intent;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
 
+import com.example.young_jin.pushtest.activities.MainActivity;
 import com.example.young_jin.pushtest.R;
-import com.example.young_jin.pushtest.activities.ThirdActivity;
-import com.example.young_jin.pushtest.manager.AlertDialogManager;
+import com.example.young_jin.pushtest.push.AlertDialogManager;
+import com.example.young_jin.pushtest.push.Notification;
 
 import java.util.List;
 
 /**
  * Created by Young-Jin on 2016-02-28.
  */
-public class FinishRefuelingNotification extends Notification{
+public class BuyCardNotification extends Notification {
 
     private Intent i;
     private TaskStackBuilder stackBuilder;
@@ -27,25 +28,26 @@ public class FinishRefuelingNotification extends Notification{
     private NotificationManager mNotificationManager;
     private Intent pushIntent;
 
-    public FinishRefuelingNotification(Context context, Intent intent) {
+    public BuyCardNotification(Context context, Intent intent) {
         super(context, intent);
+
     }
 
     @Override
-    public void makeNoti(int notification_id) {
+    public void makeNoti(int notification_id, String activityName) {
 
-        i = new Intent(getContext(), ThirdActivity.class);
+        i = new Intent(getContext(), MainActivity.class);
         i.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-        i.putExtra("msg", getPushMsg().notiMsg);
+        i.putExtra("msg", getmPushMsg().notiMsg);
 
         stackBuilder = TaskStackBuilder.create(getContext());
         stackBuilder.addNextIntentWithParentStack(i);
         resultPendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
 
         mBuilder = new NotificationCompat.Builder(getContext()).setSmallIcon(R.drawable.jamon3)
-                .setContentTitle(getPushMsg().notiTitle)
-                .setStyle(new NotificationCompat.BigTextStyle().bigText(getPushMsg().notiMsg))
-                .setContentText(getPushMsg().notiMsg)
+                .setContentTitle(getmPushMsg().notiTitle)
+                .setStyle(new NotificationCompat.BigTextStyle().bigText(getmPushMsg().notiMsg))
+                .setContentText(getmPushMsg().notiMsg)
                 .setAutoCancel(true)
                 .setVibrate(new long[]{0, 500});
 
@@ -53,7 +55,7 @@ public class FinishRefuelingNotification extends Notification{
         mNotificationManager = (android.app.NotificationManager) getContext().getSystemService(Context.NOTIFICATION_SERVICE);
         mNotificationManager.notify(notification_id, mBuilder.build());
 
-        if(getPushMsg().popupFlag.equals("Y")){
+        if(getmPushMsg().popupFlag.equals("Y")){
 
             pushIntent = new Intent(getContext(), AlertDialogManager.class);
             pushIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -87,6 +89,5 @@ public class FinishRefuelingNotification extends Notification{
             }
 
         }
-
     }
 }

@@ -9,6 +9,7 @@ import com.apms.sdk.api.request.ReadMsg;
 import com.apms.sdk.bean.PushMsg;
 import com.apms.sdk.common.util.APMSUtil;
 import com.apms.sdk.common.util.CLog;
+import com.example.young_jin.pushtest.activities.MainActivity;
 
 import org.json.JSONArray;
 

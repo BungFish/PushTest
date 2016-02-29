@@ -1,4 +1,4 @@
-package com.example.young_jin.pushtest;
+package com.example.young_jin.pushtest.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,6 +15,7 @@ import com.apms.sdk.api.request.LogoutPms;
 import com.apms.sdk.api.request.SetConfig;
 import com.apms.sdk.bean.PushMsg;
 import com.apms.sdk.common.util.Prefs;
+import com.example.young_jin.pushtest.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
